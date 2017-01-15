@@ -16,7 +16,7 @@
 [Profiles](https://github.com/xtr4nge/FruityC2-Client/wiki/Profiles)
 <br><br>
 
-##Main
+##index.html
 This is a web client to interact with the FruityC2 API. The client is a single page divided in 5 sections: Interact, Listener, Payload, Delivery, Config. With this client, it is possible to control mainly all the options and functionalities included in FruityC2. There is a section to display the alerts related with the number of targets/agents, chat messages and web logs.
 <br>
 
