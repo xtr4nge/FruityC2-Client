@@ -14,7 +14,7 @@
 [Code Generator](https://github.com/xtr4nge/FruityC2-Client/wiki/Code-Generator)
 <br>
 [Profiles](https://github.com/xtr4nge/FruityC2-Client/wiki/Profiles)
-<br><br>
+<br>
 [Tutorial: FruityC2 101](https://github.com/xtr4nge/FruityC2-Client/wiki/FruityC2-101)
 <br><br>
 
