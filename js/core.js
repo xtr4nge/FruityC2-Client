@@ -29,27 +29,48 @@ login_port = "";
 login_user = "";
 
 // -> AUTOCOMPLETE CONSOLE
-/*
 var availableTags = [
   "shell",
   "powershell",
-  "pwd"
+  "pwd",
+  "cd",
+  "checkin",
+  "hashdump",
+  "mimikatz",
+  "check_services",
+  "upload",
+  "download",
+  "ls",
+  "dir",
+  "screenshot",
+  "steal_token",
+  "revtoself",
+  "spn_search",
+  "spn_request",
+  "kerberos_ticket_dump",
+  "kerberos_ticket_purge"
 ];
+
+/*
+availableTags = [];
+availableTags.push("shell");
+availableTags.push("powershell");
+availableTags.push("pwd");
+availableTags.push("cd");
+availableTags.push("checkin");
+availableTags.push("hashdump");
+availableTags.push("mimikatz");
+availableTags.push("check_services");
+availableTags.push("upload");
+availableTags.push("download");
+availableTags.push("ls");
+availableTags.push("dir");
+availableTags.push("screenshot");
+availableTags.push("spn_search");
+availableTags.push("spn_request");
+availableTags.push("spn_dump");
+availableTags.push("kerberos_ticket_dump");
 */
-availableTags = []
-availableTags.push("shell")
-availableTags.push("powershell")
-availableTags.push("pwd")
-availableTags.push("cd")
-availableTags.push("checkin")
-availableTags.push("hashdump")
-availableTags.push("mimikatz")
-availableTags.push("check_services")
-availableTags.push("upload")
-availableTags.push("download")
-availableTags.push("ls")
-availableTags.push("dir")
-availableTags.push("screenshot")
 
 // -> TARGET
 view_mode = "list";
