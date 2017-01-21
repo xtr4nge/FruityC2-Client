@@ -44,7 +44,7 @@
 				</li>
 				<!-- DATA -->
 				<li>
-					<span><i class='fa fa-vcard-o' style='margin-top: 18px; color: white' data-toggle="modal" data-target="#mCredentials" onclick="load_credentials()" title="Credentials"></i></span>
+					<span><i class='fa fa-vcard-o' style='margin-top: 18px; color: white' data-toggle="modal" data-target="#mCredentials" onclick="load_credentials();" title="Credentials"></i></span>
 				</li>
 				<li>
 					<span><i class='fa fa-download' style='margin-top: 18px; margin-left: 10px; color: white' data-toggle="modal" data-target="#mDownloads" onclick="load_downloads()" title="Downloads"></i></span>
@@ -859,7 +859,26 @@
           </div>
           <div class="modal-body">
             <div>
-				<div id="container_credentials" style="overflow: scroll; height:400px;"></div>
+				<!-- https://codepen.io/wizly/pen/BlKxo/ -->
+				<ul class="nav nav-tabs">
+					<li class="active"><a  href="#tab-creds-pass" data-toggle="tab" onclick="load_credentials();">Password</a></li>
+					<li><a href="#tab-creds-spn" data-toggle="tab" onclick="load_credentials_spn();">SPN</a></li>
+					<li><a href="#tab-creds-ticket" data-toggle="tab" onclick="load_credentials_ticket();">TGT/TGS</a></li>
+				</ul>
+				<div class="tab-content ">
+					<div class="tab-pane active" id="tab-creds-pass">
+						<br>
+						<div id="container_credentials" style="overflow: scroll; height:400px;"></div>
+					</div>
+					<div class="tab-pane" id="tab-creds-spn">
+						<br>
+						<div id="container_credentials_spn" style="overflow: scroll; height:400px;"></div>
+					</div>
+					<div class="tab-pane" id="tab-creds-ticket">
+						<br>
+						<div id="container_credentials_ticket" style="overflow: scroll; height:400px;"></div>
+					</div>
+				</div>
             </div>
           </div>
           <div class="modal-footer">
@@ -869,7 +888,31 @@
         
       </div>
     </div>
-    <!-- ./Modal DATA:Screeshots -->
+    <!-- ./Modal DATA:Credentials -->
+	
+	<!-- Modal DATA:Credentials/John -->
+    <div class="modal fade" id="mCredentialsJohn" role="dialog">
+      <div class="modal-dialog" style="w-idth:700px">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">John The Ripper (krb5tgs)</h4>
+          </div>
+          <div class="modal-body">
+            <div>
+				<textarea id="credentials_john" class="form-control input-sm" style="font-family: monospace, courier; font-size: 10px" rows=24></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <!-- ./Modal DATA:Credentials/John -->
 
 <!-- ./MODAL SECTION -->
 
