@@ -16,6 +16,8 @@
 [Profiles](https://github.com/xtr4nge/FruityC2-Client/wiki/Profiles)
 <br>
 [Tutorial: FruityC2 101](https://github.com/xtr4nge/FruityC2-Client/wiki/FruityC2-101)
+<br>
+[FruityC2 Web Delivery (HTA)](https://github.com/xtr4nge/FruityC2-Client/wiki/FruityC2-Web-Delivery-(HTA))
 <br><br>
 
 ##index.html
