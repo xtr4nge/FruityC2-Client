@@ -124,11 +124,11 @@ function load_credentials() {
 	content = "<table>";
 	content += "<tr>";
 	content += "<td></td>";
-    content += "<td style='font-weight: bold;'>User</td>";
-    content += "<td style='font-weight: bold;'>Pass</td>";
-    content += "<td style='font-weight: bold;'>Domain</td>";
-    content += "<td style='font-weight: bold;'>Source</td>";
-    content += "<td style='font-weight: bold;'>Host</td>";
+    content += "<td style='padding-right: 10px;font-weight: bold;'>User</td>";
+    content += "<td style='padding-right: 10px;font-weight: bold;'>Pass</td>";
+    content += "<td style='padding-right: 10px;font-weight: bold;'>Domain</td>";
+    content += "<td style='padding-right: 10px;font-weight: bold;'>Source</td>";
+    content += "<td style='padding-right: 10px;font-weight: bold;'>Host</td>";
 	content += "</tr>";
 	
 	//$("#"+container_id).append(content)

@@ -19,16 +19,18 @@ function listener_add() {
     name = $("#add-listener-name").val();
     port = $("#add-listener-port").val();
     host = $("#add-listener-host").val();
+    ssl  = $("#add-listener-ssl").val();
 	
-	$.post( FruityC2+"/listener/add", { name: name, port: port, host: host } );
+	$.post( FruityC2+"/listener/add", { name: name, port: port, host: host, ssl: ssl } );
 }
 
 function listener_update() {
 	id = $("#listener-id").val();
     name = $("#listener-name").val();
-    host = $("#listener-host").val()
+    host = $("#listener-host").val();
+    ssl  = $("#listener-ssl").val();
     
-	$.post( FruityC2+"/listener/update", { id: id, name: name, host: host } );
+	$.post( FruityC2+"/listener/update", { id: id, name: name, host: host, ssl: ssl } );
 }
 
 function load_listener() {
@@ -48,7 +50,7 @@ function load_listener() {
 	
 	$.getJSON(FruityC2+"/listener", function(obj) {
         $.each(obj, function(key, value) {			
-			if (value.open == true) {
+			if (value.open === true) {
 				status = "<a href='#' style='color: #5cb85c' onclick='listener_set(\""+key+"\",\"stop\")'>enabled</a>";
 			} else {
 				status = "<a href='#' style='color: #d9534f' onclick='listener_set(\""+key+"\",\"start\")'>disabled</a>";
@@ -60,7 +62,11 @@ function load_listener() {
 			content += "<div style='display: inline-block; width: 100px;'>"+status+"</div>";
 			content += "<div style='display: inline-block; width: 100px;'>"+key+"</div>";
 			content += "<div style='display: inline-block; width: 150px;'>"+value.name+"</div>";
-			content += "<div style='display: inline-block; width: 100px;'>"+value.ssl+"</div>";
+            if (value.ssl === true || value.ssl === "true") {
+                content += "<div style='display: inline-block; width: 100px; padding-left: 5px'><i class='fa fa-check' style='font-size:12px'></i></div>";
+            } else {
+                content += "<div style='display: inline-block; width: 100px;'></div>";   
+            }
             content += "<div style='display: inline-block; w-idth: 100px;'>"+value.host+"</div>";
 			content += "</div>";
 			
@@ -68,7 +74,6 @@ function load_listener() {
         });
     });
 }
-//load_listener()
 
 function listener_load(id) {
 	if (id > 0) {
@@ -76,7 +81,9 @@ function listener_load(id) {
 			$("#listener-id").val(id);
 			$("#listener-name").val(obj.name);
             $("#listener-host").val(obj.host);
-            $("#listener-ssl").val(obj.ssl);
+            if (obj.ssl === true || obj.ssl === "true") {
+                $('#listener-ssl')[0].checked = true;
+            }
 		});
 	}
 }

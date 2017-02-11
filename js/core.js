@@ -29,6 +29,8 @@ login_port = "";
 login_user = "";
 
 // -> AUTOCOMPLETE CONSOLE
+availableTags = [];
+/*
 var availableTags = [
   "shell",
   "powershell",
@@ -50,6 +52,7 @@ var availableTags = [
   "kerberos_ticket_dump",
   "kerberos_ticket_purge"
 ];
+*/
 
 /*
 availableTags = [];
@@ -202,6 +205,15 @@ function unixtimeConverter(timestamp) {
 	return year+"-"+month+"-"+day+" "+hour+":"+minutes+":"+seconds;
 }
 
+function load_commands() {
+	$.getJSON(FruityC2+"/commands", function(obj) {
+		$.each(obj, function(key, value) {
+			availableTags.push(key);
+			$("#command_list").append("<div class='command-info'><a href='#'' onclick='set_command_info(\""+key+"\")'>"+key+"</a></div>" + value + "<br>");
+		});
+	});
+}
+
 // -------------------
 // LOAD FUNCTIONS
 // -------------------
@@ -217,6 +229,7 @@ if (FruityC2 !== "") {
 	load_view_mode();
 	load_alert(latest_aid);
 	load_payload_file();
+	load_commands();
 
 	setInterval(function(){
 		if ($('#mChat').is(':visible')){

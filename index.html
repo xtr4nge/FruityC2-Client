@@ -383,42 +383,8 @@
               <button type="button" class="close" data-dismiss="modal">&times;</button>
               <h4 class="modal-title">COMMANDS LIST</h4>
           </div>
-          <div class="modal-body">
-			<div class="command-info"><a href="#" onclick="set_command_info('cd')">cd</a></div>Change directory
-			<br>
-			<div class="command-info"><a href="#" onclick="set_command_info('checkin')">checkin</a></div>Call home
-			<br>
-			<div class="command-info"><a href="#" onclick="set_command_info('download')">download</a></div>Download a file
-			<br>
-			<div class="command-info"><a href="#" onclick="set_command_info('exit')">exit</a></div>Terminate the beacon session
-			<br>
-			<div class="command-info"><a href="#" onclick="set_command_info('hashdump')">hashdump</a></div>Dump password hashes
-			<br>
-			<div class="command-info"><a href="#" onclick="set_command_info('help')">help</a></div>Help menu
-			<br>
-			<div class="command-info"><a href="#" onclick="set_command_info('keylogger')">keylogger</a></div>Inject a keystroke logger into a process
-			<br>
-			<div class="command-info"><a href="#" onclick="set_command_info('kill')">kill</a></div>Kill a process
-			<br>
-			<div class="command-info"><a href="#" onclick="set_command_info('ls')">ls</a></div>List files
-			<br>
-			<div class="command-info"><a href="#" onclick="set_command_info('mimikatz')">mimikatz</a></div>Runs a mimikatz command
-			<br>
-			<div class="command-info"><a href="#" onclick="set_command_info('powershell')">powershell</a></div>Execute a command via powershell.exe
-			<br>
-			<div class="command-info"><a href="#" onclick="set_command_info('powershell-import')">powershell-import</a></div>Import a powershell script
-			<br>
-			<div class="command-info"><a href="#" onclick="set_command_info('ps')">ps</a></div>Show process list
-			<br>
-			<div class="command-info"><a href="#" onclick="set_command_info('pwd')">pwd</a></div>Print current directory
-			<br>
-			<div class="command-info"><a href="#" onclick="set_command_info('screenshot')">screenshot</a></div>Take a screenshot
-			<br>
-			<div class="command-info"><a href="#" onclick="set_command_info('shell')">shell</a></div>Execute a command via cmd.exe
-			<br>
-			<div class="command-info"><a href="#" onclick="set_command_info('sleep')">sleep</a></div>Set beacon sleep time
-			<br>
-			<div class="command-info"><a href="#" onclick="set_command_info('upload')">upload</a></div>Upload a file
+          <div id="command_list" class="modal-body" style="height:360px; overflow:scroll;">
+			<!-- COMMANDS & DESCRIPTION -->
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -733,7 +699,8 @@
                 Name <input id="add-listener-name" class="form-control input-sm">
                 Host <input id="add-listener-host" class="form-control input-sm">
                 Port <input id="add-listener-port" class="form-control input-sm">
-                SSL <input id="add-listener-ssl" class="form-control input-sm" value="false" disabled="disabled" title="to be implemented">
+				<div style="margin-top: 5px"><input id="add-listener-ssl" type="checkbox" value="true"> SSL</div>
+                <!--<input id="add-listener-ssl" class="form-control input-sm" value="false" d-isabled="disabled" title="to be implemented">-->
             </div>
           </div>
           <div class="modal-footer">
@@ -761,7 +728,8 @@
                 Name <input id="listener-name" class="form-control input-sm">
                 Host <input id="listener-host" class="form-control input-sm">
                 Port (id) <input id="listener-id" class="form-control input-sm" disabled>
-                SSL <input id="listener-ssl" class="form-control input-sm"  value="false" disabled="disabled" title="to be implemented">
+				<div style="margin-top: 5px"><input id="listener-ssl" type="checkbox" value="true"> SSL</div>
+				<!--<input id="listener-ssl" class="form-control input-sm"  value="false" d-isabled="disabled" title="to be implemented">-->	
             </div>
           </div>
           <div class="modal-footer">

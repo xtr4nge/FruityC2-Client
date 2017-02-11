@@ -148,11 +148,15 @@ function load_targets_list() {
 			user_name = user.split("\\")[1];
 			user_domain = user.split("\\")[0];
 			
+			// CHECK IF TARGET/AGENT IS OFFLINE
 			var ts = Math.floor(Date.now()/1000);
 			if (value.checkin < (ts - value.sleep)) {
 				offline = "boff";
+				//target_icon = "<span class='fa-stack fa-0x' style='margin-top: -10px; margin-left: -6px; height: 20px'><i class='fa fa-desktop fa-stack-1x "+mlevel+" "+offline+"'></i><i class='fa fa-exclamation-triangle fa-stack-1x text-danger' style='font-size:14px; margin-top: -2px'></i></span>";
+				target_icon = "<i class='fa fa-low-vision "+mlevel+" "+offline+"' s-tyle='font-size:12px;'></i>";
 			} else {
 				offline = "";
+				target_icon = "<i class='fa fa-desktop "+mlevel+" "+offline+"' s-tyle='font-size:12px;'></i>";
 			}
 
 			//v_data = new Date(value.checkin * 1e3).toTimeString().split(' ')[0];
@@ -169,7 +173,7 @@ function load_targets_list() {
 			content += "<div style='display: inline-block; width: 18px;' onclick='target_exit("+key+")'><i class='fa fa-remove "+mlevel+"' style='font-size:12px;'></i></div>";
 			//content += "<div style='display: inline-block; width: 20px;' onclick='target_exit("+key+")'><i class='fa fa-info "+mlevel+"' style='font-size:12px;'></i></div>";
 			//content += "<div style='display: inline-block; width: 22px;'><input type='checkbox'></div>";
-			content += "<div style='display: inline-block; width: 20px; '><i class='fa fa-desktop "+mlevel+" "+offline+"' s-tyle='font-size:12px;'></i></div>";
+			content += "<div style='display: inline-block; width: 20px; '>"+target_icon+"</div>";
 			content += "<div style='display: inline-block; width: 80px; padding-left: 10px;'>"+os_version+"</div>";
 			content += "<div style='display: inline-block; width: 120px;'>0.0.0.0</div>";
 			content += "<div style='display: inline-block; width: 120px;'>"+value.ip+"</div>";
