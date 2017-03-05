@@ -19,7 +19,7 @@ function listener_add() {
     name = $("#add-listener-name").val();
     port = $("#add-listener-port").val();
     host = $("#add-listener-host").val();
-    ssl  = $("#add-listener-ssl").val();
+    ssl  = $("#add-listener-ssl").is(":checked");
 	
 	$.post( FruityC2+"/listener/add", { name: name, port: port, host: host, ssl: ssl } );
 }
@@ -28,7 +28,7 @@ function listener_update() {
 	id = $("#listener-id").val();
     name = $("#listener-name").val();
     host = $("#listener-host").val();
-    ssl  = $("#listener-ssl").val();
+    ssl  = $("#listener-ssl").is(":checked");
     
 	$.post( FruityC2+"/listener/update", { id: id, name: name, host: host, ssl: ssl } );
 }
