@@ -150,7 +150,11 @@ function load_targets_list() {
 			
 			// CHECK IF TARGET/AGENT IS OFFLINE
 			var ts = Math.floor(Date.now()/1000);
-			if (value.checkin < (ts - value.sleep)) {
+			
+			//console.log(value.mode);
+			if (value.mode == "passive") {
+				target_icon = "<i class='fa fa-link "+mlevel+"' s-tyle='font-size:12px;'></i>";
+			} else if (value.checkin < (ts - value.sleep)) {
 				offline = "boff";
 				//target_icon = "<span class='fa-stack fa-0x' style='margin-top: -10px; margin-left: -6px; height: 20px'><i class='fa fa-desktop fa-stack-1x "+mlevel+" "+offline+"'></i><i class='fa fa-exclamation-triangle fa-stack-1x text-danger' style='font-size:14px; margin-top: -2px'></i></span>";
 				target_icon = "<i class='fa fa-low-vision "+mlevel+" "+offline+"' s-tyle='font-size:12px;'></i>";

@@ -99,6 +99,30 @@ function generate_code() {
 	}
 }
 
+function generate_code_proxy() {
+	payload_port = $("#generate-code-proxy-port").val();
+    payload_type = $("#generate-code-proxy-type").val();
+	if (payload_type != "-") {
+		$.getJSON(FruityC2+"/generate/proxy/" + payload_port + '/' + payload_type, function(data) {
+			$("#generate-code-proxy-payload").val(Base64.decode(data));
+		});
+	}
+}
+
+// POWERSHELL ENCODED COMMAND
+function generate_encoded() {
+    code = $("#generate-code-encoder-code").val();
+    code = Base64.encode(code);
+    code = code.replace("+","-");
+    code = code.replace("/","_");
+
+	if (code !== "") {
+		$.getJSON(FruityC2+"/generate/encoder" + '/' + code, function(data) {
+			$("#generate-code-encoder-encoded").val(Base64.decode(data));
+		});
+	}
+}
+
 function load_payload_file() {
     $("#container_payload_file").empty();
     

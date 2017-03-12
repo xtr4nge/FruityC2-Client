@@ -92,7 +92,7 @@
 					<span data-toggle="modal" data-target="#mAlert">
 						<i class='fa fa-bolt' style='margin-right: 5px; color: white'></i>
 						<span id="alert-alert" class="label label-danger">0</span>
-					</span> | <span style="color: white"> v0.1 (alpha)</span>
+					</span> | <span style="color: white"> v0.3</span>
 				 </li>
             </ul>
         </div>
@@ -566,26 +566,67 @@
               <h4 class="modal-title">Generate Code</h4>
           </div>
           <div class="modal-body">
-            <div>
-                Listerner <select id="generate-code-listener" class="form-control input-sm">
-                    <option>-</option>
-                    <option>Beacon-80</option>
-                    <option>Beacon-443</option>
-                </select>
-                Type <select id="generate-code-type" class="form-control input-sm">
-                    <option>-</option>
-                    <option>powershell</option>
-                    <option>powershell-command</option>
-                    <option>hta</option>
-                    <option>vba</option>
-                    <option>sct</option>
-                </select>
-                Payload <textarea id="generate-code-payload" class="form-control input-sm" rows="10"></textarea>
-            </div>
+			<div>
+				<ul class="nav nav-tabs">
+					<li class="active"><a  href="#tab-gcode-stager" data-toggle="tab" o-nclick="load_credentials();">Stager</a></li>
+					<li><a href="#tab-gcode-proxy" data-toggle="tab" o-nclick="load_credentials_spn();">Proxy</a></li>
+					<li><a href="#tab-gcode-encoder" data-toggle="tab" o-nclick="load_credentials_ticket();">Encoder</a></li>
+				</ul>
+				<div class="tab-content ">
+					<div class="tab-pane active" id="tab-gcode-stager">
+						<br>
+						<!--<div id="container_credentials" style="overflow: scroll; height:400px;"></div>-->
+						
+						<div>
+							Listerner <select id="generate-code-listener" class="form-control input-sm">
+								<option>-</option>
+							</select>
+							Type <select id="generate-code-type" class="form-control input-sm">
+								<option>-</option>
+								<option>powershell</option>
+								<option>powershell-command</option>
+								<option>hta</option>
+								<option>vba</option>
+								<option>vbs</option>
+								<option>sct</option>
+							</select>
+							Payload <textarea id="generate-code-payload" class="form-control input-sm" rows="10"></textarea>
+							<div  style="padding-top: 4px; height: 28px;">
+								<button type="button" class="btn btn-primary pull-right" onclick="generate_code();">Generate</button>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="tab-gcode-proxy">
+						<div>
+							Port <input id="generate-code-proxy-port" class="form-control input-sm">
+							Type <select id="generate-code-proxy-type" class="form-control input-sm">
+								<option>-</option>
+								<option>powershell</option>
+								<option>powershell-command</option>
+								<option>hta</option>
+								<option>vba</option>
+								<option>vbs</option>
+								<option>sct</option>
+							</select>
+							Payload <textarea id="generate-code-proxy-payload" class="form-control input-sm" rows="10"></textarea>
+							<div  style="padding-top: 4px; height: 28px;">
+								<button type="button" class="btn btn-primary pull-right" onclick="generate_code_proxy();">Generate</button>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="tab-gcode-encoder">
+						Code <textarea id="generate-code-encoder-code" class="form-control input-sm" rows="6"></textarea>
+						Encoded <textarea id="generate-code-encoder-encoded" class="form-control input-sm" rows="6"></textarea>
+						<div  style="padding-top: 4px; height: 28px;">
+							<button type="button" class="btn btn-primary pull-right" onclick="generate_encoded();">Generate</button>
+						</div>
+					</div>
+				</div>
+			</div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" onclick="generate_code()">Submit</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <!--<button type="button" class="btn btn-default" onclick="generate_code();">Submit</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
           </div>
         </div>
         

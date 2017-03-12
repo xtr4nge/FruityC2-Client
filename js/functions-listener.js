@@ -20,7 +20,7 @@ function listener_add() {
     port = $("#add-listener-port").val();
     host = $("#add-listener-host").val();
     ssl  = $("#add-listener-ssl").is(":checked");
-	
+	//console.log($("#add-listener-ssl").is(":checked"));
 	$.post( FruityC2+"/listener/add", { name: name, port: port, host: host, ssl: ssl } );
 }
 
