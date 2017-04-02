@@ -176,7 +176,7 @@
 		<!-- BLOCK LISTENER -->
         <div class="bs-callout bs-callout-primary">
             <h4>
-                <i class='fa fa-plus' style='font-size:12px' data-toggle="modal" data-target="#mListenerAdd"></i>
+                <i class='fa fa-plus' style='font-size:12px' data-toggle="modal" data-target="#mListenerAdd" onclick="listener_certificate_load('');"></i>
                 Listeners
             </h4>
             <div id="container_listener"></div>
@@ -279,6 +279,7 @@
             <div>
 				Host <input id="login_host" class="form-control input-sm" value="" d-isabled="disabled"></input>
                 Port <input id="login_port" class="form-control input-sm" value="" d-isabled="disabled"></input>
+				<div style="margin-top: 5px"><input id="login_ssl" type="checkbox" value="true"> SSL</div>
 				User <input id="login_user" class="form-control input-sm" value=""></input>
 				Token <input id="login_token" class="form-control input-sm" value="32F04C2998A8A3F9EA12FA79254349BD8F5CC327" disabled="disabled"></input>
             </div>
@@ -742,6 +743,9 @@
                 Port <input id="add-listener-port" class="form-control input-sm">
 				<div style="margin-top: 5px"><input id="add-listener-ssl" type="checkbox" value="true"> SSL</div>
                 <!--<input id="add-listener-ssl" class="form-control input-sm" value="false" d-isabled="disabled" title="to be implemented">-->
+				Certificate
+				<select id="add-listener-cert" class="form-control input-sm">
+				</select>
             </div>
           </div>
           <div class="modal-footer">
@@ -770,7 +774,10 @@
                 Host <input id="listener-host" class="form-control input-sm">
                 Port (id) <input id="listener-id" class="form-control input-sm" disabled>
 				<div style="margin-top: 5px"><input id="listener-ssl" type="checkbox" value="true"> SSL</div>
-				<!--<input id="listener-ssl" class="form-control input-sm"  value="false" d-isabled="disabled" title="to be implemented">-->	
+				<!--<input id="listener-ssl" class="form-control input-sm"  value="false" d-isabled="disabled" title="to be implemented">-->
+				Certificate
+				<select id="listener-cert" class="form-control input-sm">
+				</select>
             </div>
           </div>
           <div class="modal-footer">

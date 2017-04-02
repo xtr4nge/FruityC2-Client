@@ -20,8 +20,10 @@ function listener_add() {
     port = $("#add-listener-port").val();
     host = $("#add-listener-host").val();
     ssl  = $("#add-listener-ssl").is(":checked");
+    cert = $("#add-listener-cert").val();
+
 	//console.log($("#add-listener-ssl").is(":checked"));
-	$.post( FruityC2+"/listener/add", { name: name, port: port, host: host, ssl: ssl } );
+	$.post( FruityC2+"/listener/add", { name: name, port: port, host: host, ssl: ssl, cert: cert } );
 }
 
 function listener_update() {
@@ -29,8 +31,9 @@ function listener_update() {
     name = $("#listener-name").val();
     host = $("#listener-host").val();
     ssl  = $("#listener-ssl").is(":checked");
-    
-	$.post( FruityC2+"/listener/update", { id: id, name: name, host: host, ssl: ssl } );
+    cert = $("#listener-cert").val();
+
+	$.post( FruityC2+"/listener/update", { id: id, name: name, host: host, ssl: ssl, cert: cert } );
 }
 
 function load_listener() {
@@ -83,7 +86,10 @@ function listener_load(id) {
             $("#listener-host").val(obj.host);
             if (obj.ssl === true || obj.ssl === "true") {
                 $('#listener-ssl')[0].checked = true;
+            } else {
+                $('#listener-ssl')[0].checked = false;
             }
+            listener_certificate_load(obj.cert);
 		});
 	}
 }
@@ -101,4 +107,23 @@ function listener_del(id) {
 	} else {
 		return false;
 	}
+}
+
+function listener_certificate_load(pem) {
+    
+	$.getJSON(FruityC2+"/certificate", function(obj) {
+		$("#listener-cert").children().remove().end();
+		$("#add-listener-cert").children().remove().end();
+        $("#listener-cert").append("<option value=''>-</option>");
+        $("#add-listener-cert").append("<option value=''>-</option>");
+		$.each(obj, function(key, value) {
+            if (pem == value) {
+                console.log(pem);
+                $("#listener-cert").append("<option value='"+value+"' selected>" + value + "</option>");
+            } else {
+    			$("#listener-cert").append("<option value='"+value+"'>" + value + "</option>");
+            }
+            $("#add-listener-cert").append("<option value='"+value+"'>" + value + "</option>");
+		});
+	});
 }

@@ -24,6 +24,7 @@ FruityC2 = ""
 TOKEN="32F04C2998A8A3F9EA12FA79254349BD8F5CC327"
 
 // -> LOGIN
+login_ssl  = false;
 login_host = "";
 login_port = "";
 login_user = "";
@@ -95,11 +96,18 @@ latest_aid = 0;
 function check_login() {
 	login_host = localStorage.getItem('login_host');
 	login_port = localStorage.getItem('login_port');
+	login_ssl  = localStorage.getItem('login_ssl');
 	login_user = localStorage.getItem('login_user');
 	
 	$("#login_host").val(login_host);
 	$("#login_port").val(login_port);
 	$("#login_user").val(login_user);
+	
+	if (login_ssl === true || login_ssl === "true") {
+		$('#login_ssl')[0].checked = true;
+	} else {
+		$('#login_ssl')[0].checked = false;
+	}
 	
 	if ((login_host == "" || !login_host) || (login_port == "" || !login_port)) {
 		$('#mLogin').modal('show');
@@ -115,7 +123,11 @@ function check_login() {
 		$("#login_user").val(login_user);
 		*/
 		$("#chat-user").val(username);
-		FruityC2 = "http://"+login_host+":"+login_port;
+		
+		if (login_ssl === true || login_ssl === "true") { login_prefix = "https"; }
+		else { login_prefix = "http"; }
+		
+		FruityC2 = login_prefix+"://"+login_host+":"+login_port;
 		server_connectivity_check();
 	}
 }
@@ -126,12 +138,17 @@ function set_login() {
 	
 	login_host = $("#login_host").val();
 	login_port = $("#login_port").val();
+	login_ssl =  $("#login_ssl").is(":checked");
 	login_user = $("#login_user").val();
 	
-	FruityC2 = "http://"+login_host+":"+login_port;
+	if (login_ssl === true || login_ssl === "true") { login_prefix = "https"; }
+	else { login_prefix = "http"; }
+	
+	FruityC2 = login_prefix+"://"+login_host+":"+login_port;
 	
 	localStorage.setItem('login_host',login_host);
 	localStorage.setItem('login_port',login_port);
+	localStorage.setItem('login_ssl',login_ssl);
 	localStorage.setItem('login_user',login_user);
 	/*
 	$("#login_host").val(login_host);
