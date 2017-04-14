@@ -20,6 +20,8 @@
 [Tutorial: FruityC2 Web Delivery (HTA)](https://github.com/xtr4nge/FruityC2-Client/wiki/FruityC2-Web-Delivery-(HTA))
 <br>
 [Tutorial: FruityC2 Pass-The-Hash](https://github.com/xtr4nge/FruityC2-Client/wiki/FruityC2-Pass-The-Hash)
+<br>
+[Tutorial: FruityC2 Proxy](https://github.com/xtr4nge/FruityC2-Client/wiki/FruityC2-Proxy-(Lateral-Movement))
 <br><br>
 
 ## index.html
